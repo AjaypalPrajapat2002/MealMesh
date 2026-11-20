@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-family: "Inter", sans-serif;
+  color: #303030;
+  background: #fff8f2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --coral: #f15a3b;
+  --charcoal: #202124;
+  --cream: #fff8f2;
+  --border: #eee7df;
+  --muted: #777777;
+  --green: #27865b;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(244, 229, 217, 0.55), transparent 28rem),
+    var(--cream);
+}
+
+button, input, textarea, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+
+h1, h2, h3, h4 {
+  font-family: "Poppins", "Inter", sans-serif;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
+}
+
+::selection { background: #ffd7cc; color: #202124; }
+
+.leaflet-container { font-family: "Inter", sans-serif; }
