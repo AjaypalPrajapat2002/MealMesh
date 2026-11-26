@@ -17,7 +17,6 @@ const RiderOrderRequest = ({ orderId, onAccepted }: Props) => {
       setSecondsLeft((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
-          onAccepted();
           return 0;
         }
         return prev - 1;
@@ -25,9 +24,10 @@ const RiderOrderRequest = ({ orderId, onAccepted }: Props) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [onAccepted]);
+  }, []);
 
   const acceptOrder = async () => {
+    setAccepting(true);
     try {
       await axios.post(
         `${riderService}/api/rider/accept/${orderId}`,
@@ -42,8 +42,11 @@ const RiderOrderRequest = ({ orderId, onAccepted }: Props) => {
       toast.success("Order Accepted");
       onAccepted();
     } catch (error: any) {
-      toast.error(error.response.data.message);
-      onAccepted();
+      toast.error(
+        axios.isAxiosError(error)
+          ? error.response?.data?.message || error.message
+          : "Failed to accept order"
+      );
     } finally {
       setAccepting(false);
     }

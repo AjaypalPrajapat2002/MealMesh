@@ -420,8 +420,13 @@ const RiderDashboard = () => {
               key={id}
               orderId={id}
               onAccepted={() => {
-                fetchProfile();
+                setIncomingOrders([]);
                 fetchCurrentOrder();
+                setProfile((currentProfile) =>
+                  currentProfile
+                    ? { ...currentProfile, isAvailble: false }
+                    : currentProfile
+                );
               }}
             />
           ))}
